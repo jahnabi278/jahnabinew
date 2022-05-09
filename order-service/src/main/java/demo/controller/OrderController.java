@@ -22,6 +22,9 @@ public class OrderController
 	public TransactionResponse bookOrder(@RequestBody TransactionRequest request)
 	{
 		System.out.println("bookorder");
+		if(request.getOrder().getName().isBlank()) {
+			throw new IllegalArgumentException("Wrong input");
+		}
 		return service.saveOrder(request);
 	}
 	@GetMapping("/neworder")
